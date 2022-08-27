@@ -1,0 +1,39 @@
+/*card management*/
+.card {
+    /*position: absolute;*/
+    grid-area: overlap;
+    border: solid 4px #2892D7;
+    background: #142c41;
+    border-radius: 24px;
+    height: 70vh;
+    display: grid;
+    padding: 4px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+
+.invisible {
+    visibility: hidden;
+    /*display: none;*/
+}
+/*.next-card {*/
+/*    transform: rotate(4deg);*/
+/*}*/
+.visible {
+    /*transform: rotate(5deg);*/
+}
+
+
+.card-buttons {
+    align-self: end;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.card-buttons button:nth-child(1) {
+    background: #be0f0f;
+}
+.card-buttons button:nth-child(2) {
+    background: #0cc00c;
+}

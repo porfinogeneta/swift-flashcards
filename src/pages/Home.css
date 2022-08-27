@@ -1,0 +1,15 @@
+.page-home {
+    height: 70vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.courses-list {
+    /*align-self: center;*/
+}
+
+.page-home h2 {
+    /*align-self: end;*/
+}

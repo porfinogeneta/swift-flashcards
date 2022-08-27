@@ -1,0 +1,8 @@
+.main-nav {
+    background: #142c41;
+    padding: 7px;
+    display: flex;
+}
+.main-nav h1 {
+    justify-content: end;
+}
