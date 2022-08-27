@@ -11,8 +11,8 @@ export default function CoursesList() {
     return (
         <div className={"courses-list"}>
             {courses.map(course => (
-                <Link className={"link"} to={`/course/${course.lang}/${course.quantity}`}>
-                    <div key={course.id} className={"course-elem"}>
+                <Link key={course.id} className={"link"} to={`/course/${course.lang}/${course.quantity}`}>
+                    <div className={"course-elem"}>
                         <h2 className={"page-title"}>{course.title}</h2>
                         <p>Flashcards: {course.quantity}</p>
                     </div>

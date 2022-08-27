@@ -12,7 +12,6 @@ function App() {
     <div className="App">
         <HashRouter>
             <Navbar/>
-            <h1>Welcome to flashcards</h1>
            <Routes>
                <Route element={<Home/>} path={"/"}></Route>
                <Route element={<Course/>} path={"/course/:lang/:amount"}></Route>

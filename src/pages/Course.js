@@ -1,19 +1,41 @@
 import './Course.css'
-// import {useFetch} from "../hooks/useFetch";
+import {useFetch} from "../hooks/useFetch";
 import Card from "../components/Card";
-import data from "../data/debugDB";
-import {useState} from "react";
+// import data from "../data/debugDB";
+import {useEffect, useState} from "react";
 
 const shuffleArray = (array) => {
     return array.sort(() => Math.random() - 0.5)
 }
 
+
 export default function Course() {
 
-    // const { data: flashcards, isPending, error } = useFetch("https://diki-api.herokuapp.com/flashcards")
+    const { data, isPending, error } = useFetch("https://porfinogeneta.github.io/diki-scraper/json/data.json")
 
-    const [flashcards, setFlashcards] = useState(data)
+    // get list with non-repetitioning words indexes, the amount of indexes is 20
+    const randomArray = () => {
+        let indexesToDownload = []
+        for (let i = 0; i < 20; i++) {
+            const index = Math.round(Math.random() * data.length)
+            indexesToDownload.push(index)
+            if (!indexesToDownload.includes(index)) {
+                indexesToDownload.push(index)
+            }
+        }
+        return indexesToDownload
+    }
 
+
+    const [flashcards, setFlashcards] = useState(null)
+    const [amount, setAmount] = useState(0)
+
+    useEffect(() => {
+        if (data) {
+            const newArray = data.filter(elem => randomArray().includes(data.indexOf(elem)))
+            setFlashcards(newArray)
+        }
+    }, [data])
 
     const learnAgain = (card) => {
         const cardsCopy = [...flashcards]
@@ -28,22 +50,27 @@ export default function Course() {
         // delete learn element
         const preparedArray = cardCopy.filter(elem => elem !== card)
         setFlashcards(preparedArray)
+        setAmount(prevState => prevState + 1) // increase amount of learnt
         console.log(flashcards, 'learned')
     }
 
     return(
         <div className={"course-page"}>
-            {/*{error && <p>{error}</p>}*/}
-            {/*{isPending && <p>Loading...</p>}*/}
+            {error && <p>{error}</p>}
+            {isPending && <p>Loading...</p>}
             <div className={"cards-container"}>
+                <h3>{amount} / 20</h3>
                 { flashcards && flashcards.map((card, index) => (
-                    <Card
-                        index={index}
-                        key={card.id}
-                        card={card}
-                        learnAgain={learnAgain}
-                        wellLearned={wellLearned}
-                    />
+                    <span>
+                        <Card
+                            index={index}
+                            key={card.id}
+                            card={card}
+                            learnAgain={learnAgain}
+                            wellLearned={wellLearned}
+                        />
+                    </span>
+
                 )) }
             </div>
         </div>
