@@ -13,18 +13,18 @@ export default function Course() {
 
     const { data, isPending, error } = useFetch("https://porfinogeneta.github.io/diki-scraper/json/data.json")
 
-    // get list with non-repetitioning words indexes, the amount of indexes is 20
-    const randomArray = () => {
-        let indexesToDownload = []
-        for (let i = 0; i < 20; i++) {
-            const index = Math.round(Math.random() * data.length)
-            indexesToDownload.push(index)
-            if (!indexesToDownload.includes(index)) {
-                indexesToDownload.push(index)
-            }
-        }
-        return indexesToDownload
-    }
+    // // get list with non-repetitioning words indexes, the amount of indexes is 20
+    // const randomArray = () => {
+    //     let indexesToDownload = []
+    //     for (let i = 0; i < 20; i++) {
+    //         const index = Math.round(Math.random() * data.length)
+    //         indexesToDownload.push(index)
+    //         if (!indexesToDownload.includes(index)) {
+    //             indexesToDownload.push(index)
+    //         }
+    //     }
+    //     return indexesToDownload
+    // }
 
     // const random = randomArray()
 
