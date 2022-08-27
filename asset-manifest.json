@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/swift-flashcards/static/css/main.a32ed99c.css",
+    "main.js": "/swift-flashcards/static/js/main.9ff25192.js",
+    "index.html": "/swift-flashcards/index.html",
+    "main.a32ed99c.css.map": "/swift-flashcards/static/css/main.a32ed99c.css.map",
+    "main.9ff25192.js.map": "/swift-flashcards/static/js/main.9ff25192.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a32ed99c.css",
+    "static/js/main.9ff25192.js"
+  ]
+}
