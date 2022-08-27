@@ -9,34 +9,18 @@ const shuffleArray = (array) => {
 }
 
 
+
+
 export default function Course() {
 
     const { data, isPending, error } = useFetch("https://porfinogeneta.github.io/diki-scraper/json/data.json")
-
-    // // get list with non-repetitioning words indexes, the amount of indexes is 20
-    // const randomArray = () => {
-    //     let indexesToDownload = []
-    //     for (let i = 0; i < 20; i++) {
-    //         const index = Math.round(Math.random() * data.length)
-    //         indexesToDownload.push(index)
-    //         if (!indexesToDownload.includes(index)) {
-    //             indexesToDownload.push(index)
-    //         }
-    //     }
-    //     return indexesToDownload
-    // }
-
-    // const random = randomArray()
 
 
     const [flashcards, setFlashcards] = useState(null)
     const [amount, setAmount] = useState(0)
 
+
     useEffect(() => {
-        // if (data) {
-        //     const newArray = data.filter(elem => random.includes(data.indexOf(elem)))
-        //     setFlashcards(newArray)
-        // }
         setFlashcards(data)
     }, [data])
 
@@ -61,19 +45,16 @@ export default function Course() {
         <div className={"course-page"}>
             {error && <p>{error}</p>}
             {isPending && <p>Loading...</p>}
+            <h3>{amount} / 20</h3>
             <div className={"cards-container"}>
-                <h3>{amount} / 20</h3>
                 { flashcards && flashcards.map((card, index) => (
-                    <span>
-                        <Card
-                            index={index}
-                            key={card.id}
-                            card={card}
-                            learnAgain={learnAgain}
-                            wellLearned={wellLearned}
-                        />
-                    </span>
-
+                    <Card
+                        index={index}
+                        key={card.id}
+                        card={card}
+                        learnAgain={learnAgain}
+                        wellLearned={wellLearned}
+                    />
                 )) }
             </div>
         </div>

@@ -1,6 +1,5 @@
 /*card management*/
 .card {
-    /*position: absolute;*/
     grid-area: overlap;
     border: solid 4px #2892D7;
     background: #142c41;
