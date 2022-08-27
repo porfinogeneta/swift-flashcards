@@ -35,7 +35,7 @@ export default function Course() {
             const newArray = data.filter(elem => randomArray().includes(data.indexOf(elem)))
             setFlashcards(newArray)
         }
-    }, [data, randomArray()])
+    }, [data, randomArray])
 
     const learnAgain = (card) => {
         const cardsCopy = [...flashcards]
