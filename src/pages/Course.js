@@ -26,18 +26,19 @@ export default function Course() {
         return indexesToDownload
     }
 
-    const random = randomArray()
+    // const random = randomArray()
 
 
     const [flashcards, setFlashcards] = useState(null)
     const [amount, setAmount] = useState(0)
 
     useEffect(() => {
-        if (data) {
-            const newArray = data.filter(elem => random.includes(data.indexOf(elem)))
-            setFlashcards(newArray)
-        }
-    }, [data, random])
+        // if (data) {
+        //     const newArray = data.filter(elem => random.includes(data.indexOf(elem)))
+        //     setFlashcards(newArray)
+        // }
+        setFlashcards(data)
+    }, [data])
 
     const learnAgain = (card) => {
         const cardsCopy = [...flashcards]

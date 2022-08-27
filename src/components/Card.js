@@ -19,8 +19,8 @@ export default function Card({card, learnAgain, wellLearned, index}) {
             <h2 className={"page-title"}>{card.word}</h2>
             {card.sentence && <p className={"plain-text"}>{card.sentence}</p>}
             <ol>
-                {card.translation.map(trans => (
-                    <li className={"plain-text"} key={trans}>{trans}</li>
+                {card.translation.map((trans, index) => (
+                    <li className={"plain-text"} key={index}>{trans}</li>
                 ))}
             </ol>
             <div className={"card-buttons"}>
