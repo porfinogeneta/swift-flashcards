@@ -2,7 +2,7 @@ import './Course.css'
 // import {useFetch} from "../hooks/useFetch";
 import Card from "../components/Card";
 import data from "../data/debugDB";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 const shuffleArray = (array) => {
     return array.sort(() => Math.random() - 0.5)
