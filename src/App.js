@@ -4,20 +4,20 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 
 // router
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { HashRouter, Route, Routes} from "react-router-dom";
 import Course from "./pages/Course";
 
 function App() {
   return (
     <div className="App">
-        <BrowserRouter>
+        <HashRouter>
             <Navbar/>
             <h1>Welcome to flashcards</h1>
            <Routes>
                <Route element={<Home/>} path={"/"}></Route>
                <Route element={<Course/>} path={"/course/:lang/:amount"}></Route>
            </Routes>
-        </BrowserRouter>
+        </HashRouter>
 
     </div>
   );
