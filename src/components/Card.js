@@ -10,6 +10,7 @@ export default function Card({card, learnAgain, wellLearned, index}) {
         if (index === 0) {
             return 'visible'
         }else {
+            console.log('test')
             return "invisible"
         }
     }
