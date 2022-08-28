@@ -1,6 +1,9 @@
 import {useEffect, useState} from "react";
 
-export const useFetch = (url) => {
+// helper functions
+import getRandomElemFromArray from "../helpers/getRandomElemFromArray";
+
+export const useFetch = (url, toFetch) => {
     const [data, setData] = useState(null)
     const [isPending, setIsPending] = useState(false)
     const [error, setError] = useState(null)
@@ -16,7 +19,8 @@ export const useFetch = (url) => {
                 if (!res.ok) {
                     throw new Error(res.statusText)
                 }
-                const data = await res.json()
+                const fullArray = await res.json()
+                const data = getRandomElemFromArray(fullArray, toFetch)
                 setData(data)
                 console.log(data)
                 setIsPending(false)
@@ -35,6 +39,6 @@ export const useFetch = (url) => {
         // return () => {
         //     controller.abort()
         // }
-    }, [url])
+    }, [url, toFetch])
     return { data, isPending, error}
 }

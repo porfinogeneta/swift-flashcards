@@ -1,20 +1,24 @@
 import './Course.css'
 import {useFetch} from "../hooks/useFetch";
 import Card from "../components/Card";
-// import data from "../data/debugDB";
+// React Dependencies
 import {useEffect, useState} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const shuffleArray = (array) => {
     return array.sort(() => Math.random() - 0.5)
 }
 
 
-
-
 export default function Course() {
 
-    const { data, isPending, error } = useFetch("https://porfinogeneta.github.io/diki-scraper/json/data.json")
+    // get amout to learn from the query
+    const queryString = useLocation().pathname
+    const toFetch = queryString.split('DE/')[1] // get all after '/', to receive amount
 
+    const { data, isPending, error } = useFetch("https://porfinogeneta.github.io/diki-scraper/json/data.json", toFetch)
+
+    const navigate = useNavigate()
 
     const [flashcards, setFlashcards] = useState(null)
     const [amount, setAmount] = useState(0)
@@ -23,6 +27,13 @@ export default function Course() {
     useEffect(() => {
         setFlashcards(data)
     }, [data])
+
+    // navigate if lesson finished
+    useEffect(() => {
+        if (amount === parseInt(toFetch)) {
+            setTimeout(() => navigate('/'), 1000)
+        }
+    }, [amount, toFetch, navigate])
 
     const learnAgain = (card) => {
         const cardsCopy = [...flashcards]
@@ -45,7 +56,7 @@ export default function Course() {
         <div className={"course-page"}>
             {error && <p>{error}</p>}
             {isPending && <p>Loading...</p>}
-            <h3>{amount} / 20</h3>
+            <h3>{amount} / {toFetch}</h3>
             <div className={"cards-container"}>
                 { flashcards && flashcards.map((card, index) => (
                     <Card
@@ -56,6 +67,7 @@ export default function Course() {
                         wellLearned={wellLearned}
                     />
                 )) }
+                { amount === parseInt(toFetch) ? (<h1 className={"page-title"}>Congratulations!</h1>): ''}
             </div>
         </div>
     )
